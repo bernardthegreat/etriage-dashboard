@@ -29,7 +29,7 @@ export default {
     return {
       apiUrl: "https://apps.uerm.edu.ph:3443/",
       apiKey: "7190WHUt7gzKgrRURMnoS4D7tX6Xp112",
-      route: window.location.pathname,
+      route: '/etriage-dashboard/',
       baseUrl: '/etriage-dashboard/',
     };
   },
@@ -43,7 +43,7 @@ export default {
   methods: {
     changeRoute(route) {
       this.route = this.baseUrl + route;
-      window.location.pathname = this.route;
+      // window.location.pathname = this.route;
     },
   },
 };

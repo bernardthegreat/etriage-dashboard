@@ -78,7 +78,6 @@ export default {
         }
       );
       const responseJson = await response.json();
-      console.log(responseJson);
       if (responseJson.length > 0) {
         this.showStatus = true;
       }

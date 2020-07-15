@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/etriage-dashboard/precache-manifest.53765af96cdc0c5e07b12741f17030f3.js"
+  "/etriage-dashboard/precache-manifest.bc9e4e6f9ac7fb32c4c0d303399aedde.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "etriage-dashboard"});
