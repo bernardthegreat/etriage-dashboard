@@ -12,32 +12,25 @@
       <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <h1 class="display-4">ETriage Employee Dashboard</h1>
       </div>
-      <div class="card-deck mb-12 text-center">
-        <div class="card mb-3 shadow-sm">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">
-              Employees Today {{ currentDate }}
-            </h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">
-              {{ eTriageEmployeeCountToday }}
-            </h1>
-            <button
-              type="button"
-              v-on:click.prevent="changeRoute('eTriageToday')"
-              class="btn btn-lg btn-block btn-primary"
-            >
-              See Detailed Data
-            </button>
-
-          </div>
+      <div class="card bg-dark text-white text-center">
+        <div class="card-header bg-primary text-white">
+          <h4>Employees Today {{ currentDate }}</h4>
         </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">{{ eTriageEmployeeCountToday }}</h1>
+        </div>
+        <a
+          href="#"
+          v-on:click.prevent="changeRoute('eTriageToday')"
+          class="card-footer bg-primary text-white"
+        >View details</a>
       </div>
 
       <div class="card my-5" v-if="eTriageEmployees.forCovidEr.length > 0">
         <div class="card-header bg-danger text-white">
-          <h4 class="text-center my-0 font-weight-normal">For Covid ER Report: {{eTriageEmployees.forCovidEr.length}}</h4>
+          <h4
+            class="text-center my-0 font-weight-normal"
+          >For Covid ER Report: {{eTriageEmployees.forCovidEr.length}}</h4>
         </div>
         <div class="table-responsive" style="max-height:70vh">
           <table class="table table-striped table-hover table-condensed table-dark m-0">
@@ -65,78 +58,85 @@
         </div>
       </div>
 
-      <div class="card-deck mb-12 text-center">
-        <div
-          class="card mb-4 shadow-sm"
-          v-bind:key="key"
-          v-for="(eTriageByGenderCount, key) in eTriageByGenderCountToday"
-        >
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">
-              <span v-if="eTriageByGenderCount['gender'] === 'N/A'"
-                >OTHERS</span
-              >
-              <span v-else-if="eTriageByGenderCount['gender'] === 'F'"
-                >FEMALE</span
-              >
-              <span v-else-if="eTriageByGenderCount['gender'] === 'M'"
-                >MALE</span
-              >
-            </h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">
-              {{ eTriageByGenderCount["count"] }}
-            </h1>
-
-            <button
-              type="button"
-              v-on:click.prevent="changeRoute('eTriageByGenderToday')"
-              class="btn btn-lg btn-block btn-info"
-            >
-              See Detailed Data
-            </button>
-          </div>
+      <div class="d-flex flex-wrap justify-content-around">
+        <div class="card bg-dark text-white m-3 flex-grow-1">
+          <h4 class="card-header bg-secondary text-center">Male</h4>
+          <div class="display-4 p-5 text-center">{{eTriageEmployees.male.length}}</div>
+          <a
+            href="#"
+            v-on:click.prevent="changeRoute('eTriageByGenderToday')"
+            class="card-footer text-center text-white bg-secondary"
+          >View details</a>
+        </div>
+        <div class="card bg-dark text-white m-3 flex-grow-1">
+          <h4 class="card-header bg-secondary text-center">Female</h4>
+          <div class="display-4 p-5 text-center">{{eTriageEmployees.female.length}}</div>
+          <a
+            href="#"
+            v-on:click.prevent="changeRoute('eTriageByGenderToday')"
+            class="card-footer text-center text-white bg-secondary"
+          >View details</a>
         </div>
       </div>
 
-      <div class="card-deck mb-12 text-center">
-        <div
-          class="card mb-4 shadow-sm"
-          v-bind:key="key"
-          v-for="(eTriageByClassCount, key) in eTriageByClassCountToday"
-        >
-          <div class="card-header">
-            <h5 class="my-0 font-weight-normal">
-              {{ eTriageByClassCount["class"] }}
-            </h5>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">
-              {{ eTriageByClassCount["count"] }}
-            </h1>
-
-            <button type="button" class="btn btn-lg btn-block btn-warning">
-              See More
-            </button>
-          </div>
+      <div class="d-flex flex-wrap justify-content-around">
+        <div class="card bg-dark text-white m-3 flex-grow-1">
+          <h4 class="card-header bg-secondary text-center">Officer</h4>
+          <div class="display-4 p-5 text-center">{{eTriageEmployees.officer.length}}</div>
+          <a
+            href="#"
+            v-on:click.prevent
+            class="card-footer text-center text-white bg-secondary"
+          >View details</a>
+        </div>
+        <div class="card bg-dark text-white m-3 flex-grow-1">
+          <h4 class="card-header bg-secondary text-center">Management</h4>
+          <div class="display-4 p-5 text-center">{{eTriageEmployees.management.length}}</div>
+          <a
+            href="#"
+            v-on:click.prevent
+            class="card-footer text-center text-white bg-secondary"
+          >View details</a>
+        </div>
+        <div class="card bg-dark text-white m-3 flex-grow-1">
+          <h4 class="card-header bg-secondary text-center">Rank and File</h4>
+          <div class="display-4 p-5 text-center">{{eTriageEmployees.rankAndFile.length}}</div>
+          <a
+            href="#"
+            v-on:click.prevent
+            class="card-footer text-center text-white bg-secondary"
+          >View details</a>
+        </div>
+        <div class="card bg-dark text-white m-3 flex-grow-1">
+          <h4 class="card-header bg-secondary text-center">Faculty</h4>
+          <div class="display-4 p-5 text-center">{{eTriageEmployees.faculty.length}}</div>
+          <a
+            href="#"
+            v-on:click.prevent
+            class="card-footer text-center text-white bg-secondary"
+          >View details</a>
+        </div>
+        <div class="card bg-dark text-white m-3 flex-grow-1">
+          <h4 class="card-header bg-secondary text-center">Residents/PGI</h4>
+          <div class="display-4 p-5 text-center">{{eTriageEmployees.resident.length}}</div>
+          <a
+            href="#"
+            v-on:click.prevent
+            class="card-footer text-center text-white bg-secondary"
+          >View details</a>
         </div>
       </div>
 
-      <div class="card-deck mb-12 text-center">
-        <div
-          class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center"
-        >
-          <h2 class="display-4">Historical Data</h2>
-        </div>
-      </div>
       <div class="card-deck mb-12 text-center">
         <div class="card">
-          <div class="card-header">
-            <span class="float-left">
-              Click the
-              <em>Names</em> to filter
-            </span>
+          <div class="card-header bg-info text-white">
+            <h4>
+              Historical Data
+              <small>
+                Click the
+                <em>Names</em> to filter
+              </small>
+            </h4>
             <div class="btn-group float-right">
               <button
                 type="button"
@@ -157,11 +157,11 @@
               </button>
             </div>
           </div>
-          <div class="card-body">
-            <div style="height: 400px; overflow-y: auto;">
+          <div class="table-responsive">
+            <div style="max-height: 70vh;">
               <table
                 id="table-table"
-                class="table table-striped table-hover text-center"
+                class="table table-striped table-hover text-center table-dark m-0"
               >
                 <thead>
                   <tr>
@@ -194,18 +194,14 @@
                     <td
                       class="name"
                       v-on:click="filterHistory(eTriageHistoricalResult.name)"
-                    >
-                      {{ eTriageHistoricalResult.name }}
-                    </td>
+                    >{{ eTriageHistoricalResult.name }}</td>
                     <td>{{ eTriageHistoricalResult.age }}</td>
                     <td>{{ eTriageHistoricalResult.gender }}</td>
                     <td>{{ eTriageHistoricalResult.position }}</td>
                     <td>{{ eTriageHistoricalResult.department }}</td>
                     <td>{{ eTriageHistoricalResult.class }}</td>
                     <td>{{ eTriageHistoricalResult.temperature }}</td>
-                    <td
-                      v-html="eTriageHistoricalResult.symotomsAndHistory"
-                    ></td>
+                    <td v-html="eTriageHistoricalResult.symotomsAndHistory"></td>
                   </tr>
                   <tr>
                     <td></td>
@@ -222,20 +218,20 @@
 
 <script>
 export default {
-  props: ["apiKey", "apiUrl","changeRoute"],
+  props: ["apiKey", "apiUrl", "changeRoute"],
 
   data() {
     return {
-      eTriageEmployees:{
-        master:[],
-        forCovidEr:[],
-        male:[],
-        female:[],
-        faculty:[],
-        rankAndFile:[],
-        management:[],
-        officer:[],
-        resident:[],
+      eTriageEmployees: {
+        master: [],
+        forCovidEr: [],
+        male: [],
+        female: [],
+        faculty: [],
+        rankAndFile: [],
+        management: [],
+        officer: [],
+        resident: []
       },
       eTriageEmployeeCountDetailedToday: "",
       eTriageEmployeeCountToday: "",
@@ -249,13 +245,13 @@ export default {
       currentPage: "/",
       isDataLoaded: false,
       currentTab: 0,
-      currentDate: new Date().toISOString().substring(0, 10),
+      currentDate: new Date().toISOString().substring(0, 10)
     };
   },
 
   created() {
     this.eTriageCountToday();
-    this.eTriageCountTodayByClass();
+    // this.eTriageCountTodayByClass();
     this.eTriageHistoricalData();
   },
   methods: {
@@ -269,7 +265,7 @@ export default {
         return;
       }
       this.eTriageHistoricalFilter = this.eTriageHistoricalFilter.filter(
-        (item) => item.name == name
+        item => item.name == name
       );
       this.isFiltered = true;
     },
@@ -292,7 +288,7 @@ export default {
         `${this.apiUrl}etriage/dashboard?auth=${this.apiKey}`,
         {
           method: "GET",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json" }
         }
       );
       const responseJson = await response.json();
@@ -343,13 +339,13 @@ export default {
         `${this.apiUrl}etriage/dashboard-etriage-today?auth=${this.apiKey}`,
         {
           method: "GET",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json" }
         }
       );
       const responseJson = await response.json();
-      let male = responseJson.filter((item) => item.gender == "M");
-      let female = responseJson.filter((item) => item.gender == "F");
-      let none = responseJson.filter((item) => item.gender == null);
+      let male = responseJson.filter(item => item.gender == "M");
+      let female = responseJson.filter(item => item.gender == "F");
+      let none = responseJson.filter(item => item.gender == null);
       if (responseJson.length > 0) {
         this.showStatus = true;
       }
@@ -358,52 +354,50 @@ export default {
         {
           gender: "F",
           count: female.length,
-          details: female,
+          details: female
         },
         {
           gender: "M",
           count: male.length,
-          details: male,
+          details: male
         },
         {
           gender: "N/A",
           count: none.length,
-          details: none,
-        },
+          details: none
+        }
       ];
 
       this.eTriageByGenderCountToday = genderMap;
       this.eTriageEmployeeCountToday = responseJson.length;
       this.eTriageEmployees.master = responseJson;
-      this.eTriageEmployees.master.sort((a, b) => (a.name > b.name) ? 1 : -1);
-      this.eTriageEmployees.forCovidEr = this.eTriageEmployees.master.filter((result)=>result.isForCovidEr == 1);
-      this.eTriageEmployees.male = this.eTriageEmployees.master.filter((result)=>result.gender == 'M');
-      this.eTriageEmployees.female = this.eTriageEmployees.master.filter((result)=>result.gender == 'F');
-      this.eTriageEmployees.management = this.eTriageEmployees.master.filter((result)=>result.class == 'MANAGEMENT');
-      this.eTriageEmployees.rankAndFile = this.eTriageEmployees.master.filter((result)=>result.class == 'RANK AND FILE');
-      this.eTriageEmployees.officer = this.eTriageEmployees.master.filter((result)=>result.class == 'OFFICER');
-      this.eTriageEmployees.resident = this.eTriageEmployees.master.filter((result)=>result.class == 'RESIDENT/PGI');
-      this.eTriageEmployees.faculty = this.eTriageEmployees.master.filter((result)=>result.class == 'FACULTY');
-    },
-    async eTriageCountTodayByClass() {
-      this.isFormLoading = true;
-
-      const response = await fetch(
-        `${this.apiUrl}etriage/dashboard-etriage-by-class?auth=${this.apiKey}`,
-        {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-        }
+      this.eTriageEmployees.master.sort((a, b) => (a.name > b.name ? 1 : -1));
+      this.eTriageEmployees.forCovidEr = this.eTriageEmployees.master.filter(
+        result => result.isForCovidEr == 1
       );
-      const responseJson = await response.json();
-
-      if (responseJson.length > 0) {
-        this.showStatus = true;
-      }
-
-      this.eTriageByClassCountToday = responseJson;
-    },
-  },
+      this.eTriageEmployees.male = this.eTriageEmployees.master.filter(
+        result => result.gender == "M"
+      );
+      this.eTriageEmployees.female = this.eTriageEmployees.master.filter(
+        result => result.gender == "F"
+      );
+      this.eTriageEmployees.management = this.eTriageEmployees.master.filter(
+        result => result.class == "MANAGEMENT"
+      );
+      this.eTriageEmployees.rankAndFile = this.eTriageEmployees.master.filter(
+        result => result.class == "RANK AND FILE"
+      );
+      this.eTriageEmployees.officer = this.eTriageEmployees.master.filter(
+        result => result.class == "OFFICER"
+      );
+      this.eTriageEmployees.resident = this.eTriageEmployees.master.filter(
+        result => result.class == "RESIDENT/PGI"
+      );
+      this.eTriageEmployees.faculty = this.eTriageEmployees.master.filter(
+        result => result.class == "FACULTY"
+      );
+    }
+  }
 };
 </script>
 
