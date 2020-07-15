@@ -1,17 +1,23 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Dashboard></Dashboard>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Dashboard from './components/Dashboard.vue'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      apiUrl: "https://apps.uerm.edu.ph:3443/",
+      apiKey: "7190WHUt7gzKgrRURMnoS4D7tX6Xp112",
+    }
+  },
   components: {
-    HelloWorld
+    Dashboard
   }
 }
 </script>
