@@ -58,72 +58,246 @@
         </div>
       </div>
 
-      <div class="d-flex flex-wrap justify-content-around">
+      <div
+        class="d-flex flex-wrap justify-content-around"
+        style="margin-left:-16px; margin-right:-16px;"
+      >
         <div class="card bg-dark text-white m-3 flex-grow-1">
           <h4 class="card-header bg-secondary text-center">Male</h4>
           <div class="display-4 p-5 text-center">{{eTriageEmployees.male.length}}</div>
+          <div class="table-responsive" style="max-height:70vh" v-if="isDetailsShown.male">
+            <table class="table table-striped table-hover table-condensed table-dark m-0">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Name</th>
+                  <th>Position</th>
+                  <th>Department</th>
+                  <th>Symptoms and History</th>
+                  <th>Temperature</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-bind:key="key" v-for="(emp,key) in eTriageEmployees.male">
+                  <td>{{emp.code}}</td>
+                  <td>{{emp.name}}</td>
+                  <td>{{emp.position}}</td>
+                  <td>{{emp.department}}</td>
+                  <td>{{emp.symotomsAndHistory != null ? emp.symotomsAndHistory.replace(/_/g,' ').toUpperCase().split(';').join(', ') : ''}}</td>
+                  <td>{{emp.temperature}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <a
             href="#"
-            v-on:click.prevent="changeRoute('eTriageByGenderToday')"
+            v-on:click.prevent="isDetailsShown.male = !isDetailsShown.male"
             class="card-footer text-center text-white bg-secondary"
-          >View details</a>
+          >{{isDetailsShown.male ? 'Hide' : 'Show'}} details</a>
         </div>
         <div class="card bg-dark text-white m-3 flex-grow-1">
           <h4 class="card-header bg-secondary text-center">Female</h4>
           <div class="display-4 p-5 text-center">{{eTriageEmployees.female.length}}</div>
+          <div class="table-responsive" style="max-height:70vh" v-if="isDetailsShown.female">
+            <table class="table table-striped table-hover table-condensed table-dark m-0">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Name</th>
+                  <th>Position</th>
+                  <th>Department</th>
+                  <th>Symptoms and History</th>
+                  <th>Temperature</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-bind:key="key" v-for="(emp,key) in eTriageEmployees.female">
+                  <td>{{emp.code}}</td>
+                  <td>{{emp.name}}</td>
+                  <td>{{emp.position}}</td>
+                  <td>{{emp.department}}</td>
+                  <td>{{emp.symotomsAndHistory != null ? emp.symotomsAndHistory.replace(/_/g,' ').toUpperCase().split(';').join(', ') : ''}}</td>
+                  <td>{{emp.temperature}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <a
             href="#"
-            v-on:click.prevent="changeRoute('eTriageByGenderToday')"
+            v-on:click.prevent="isDetailsShown.female = !isDetailsShown.female"
             class="card-footer text-center text-white bg-secondary"
-          >View details</a>
+          >{{isDetailsShown.female ? 'Hide' : 'Show'}} details</a>
         </div>
       </div>
 
-      <div class="d-flex flex-wrap justify-content-around">
+      <div
+        class="d-flex flex-wrap justify-content-around"
+        style="margin-left:-16px; margin-right:-16px;"
+      >
         <div class="card bg-dark text-white m-3 flex-grow-1">
           <h4 class="card-header bg-secondary text-center">Officer</h4>
           <div class="display-4 p-5 text-center">{{eTriageEmployees.officer.length}}</div>
+          <div class="table-responsive" style="max-height:70vh" v-if="isDetailsShown.officer">
+            <table class="table table-striped table-hover table-condensed table-dark m-0">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Name</th>
+                  <th>Position</th>
+                  <th>Department</th>
+                  <th>Symptoms and History</th>
+                  <th>Temperature</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-bind:key="key" v-for="(emp,key) in eTriageEmployees.officer">
+                  <td>{{emp.code}}</td>
+                  <td>{{emp.name}}</td>
+                  <td>{{emp.position}}</td>
+                  <td>{{emp.department}}</td>
+                  <td>{{emp.symotomsAndHistory != null ? emp.symotomsAndHistory.replace(/_/g,' ').toUpperCase().split(';').join(', ') : ''}}</td>
+                  <td>{{emp.temperature}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <a
             href="#"
-            v-on:click.prevent
+            v-on:click.prevent="isDetailsShown.officer = !isDetailsShown.officer"
             class="card-footer text-center text-white bg-secondary"
-          >View details</a>
+          >{{isDetailsShown.officer ? 'Hide' : 'Show'}} details</a>
         </div>
         <div class="card bg-dark text-white m-3 flex-grow-1">
           <h4 class="card-header bg-secondary text-center">Management</h4>
           <div class="display-4 p-5 text-center">{{eTriageEmployees.management.length}}</div>
+          <div class="table-responsive" style="max-height:70vh" v-if="isDetailsShown.management">
+            <table class="table table-striped table-hover table-condensed table-dark m-0">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Name</th>
+                  <th>Position</th>
+                  <th>Department</th>
+                  <th>Symptoms and History</th>
+                  <th>Temperature</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-bind:key="key" v-for="(emp,key) in eTriageEmployees.management">
+                  <td>{{emp.code}}</td>
+                  <td>{{emp.name}}</td>
+                  <td>{{emp.position}}</td>
+                  <td>{{emp.department}}</td>
+                  <td>{{emp.symotomsAndHistory != null ? emp.symotomsAndHistory.replace(/_/g,' ').toUpperCase().split(';').join(', ') : ''}}</td>
+                  <td>{{emp.temperature}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <a
             href="#"
-            v-on:click.prevent
+            v-on:click.prevent="isDetailsShown.management = !isDetailsShown.management"
             class="card-footer text-center text-white bg-secondary"
-          >View details</a>
+          >{{isDetailsShown.management ? 'Hide' : 'Show'}} details</a>
         </div>
         <div class="card bg-dark text-white m-3 flex-grow-1">
           <h4 class="card-header bg-secondary text-center">Rank and File</h4>
           <div class="display-4 p-5 text-center">{{eTriageEmployees.rankAndFile.length}}</div>
+          <div class="table-responsive" style="max-height:70vh" v-if="isDetailsShown.rankAndFile">
+            <table class="table table-striped table-hover table-condensed table-dark m-0">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Name</th>
+                  <th>Position</th>
+                  <th>Department</th>
+                  <th>Symptoms and History</th>
+                  <th>Temperature</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-bind:key="key" v-for="(emp,key) in eTriageEmployees.rankAndFile">
+                  <td>{{emp.code}}</td>
+                  <td>{{emp.name}}</td>
+                  <td>{{emp.position}}</td>
+                  <td>{{emp.department}}</td>
+                  <td>{{emp.symotomsAndHistory != null ? emp.symotomsAndHistory.replace(/_/g,' ').toUpperCase().split(';').join(', ') : ''}}</td>
+                  <td>{{emp.temperature}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <a
             href="#"
-            v-on:click.prevent
+            v-on:click.prevent="isDetailsShown.rankAndFile = !isDetailsShown.rankAndFile"
             class="card-footer text-center text-white bg-secondary"
-          >View details</a>
+          >{{isDetailsShown.rankAndFile ? 'Hide' : 'Show'}} details</a>
         </div>
         <div class="card bg-dark text-white m-3 flex-grow-1">
           <h4 class="card-header bg-secondary text-center">Faculty</h4>
           <div class="display-4 p-5 text-center">{{eTriageEmployees.faculty.length}}</div>
+          <div class="table-responsive" style="max-height:70vh" v-if="isDetailsShown.faculty">
+            <table class="table table-striped table-hover table-condensed table-dark m-0">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Name</th>
+                  <th>Position</th>
+                  <th>Department</th>
+                  <th>Symptoms and History</th>
+                  <th>Temperature</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-bind:key="key" v-for="(emp,key) in eTriageEmployees.faculty">
+                  <td>{{emp.code}}</td>
+                  <td>{{emp.name}}</td>
+                  <td>{{emp.position}}</td>
+                  <td>{{emp.department}}</td>
+                  <td>{{emp.symotomsAndHistory != null ? emp.symotomsAndHistory.replace(/_/g,' ').toUpperCase().split(';').join(', ') : ''}}</td>
+                  <td>{{emp.temperature}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <a
             href="#"
-            v-on:click.prevent
+            v-on:click.prevent="isDetailsShown.faculty = !isDetailsShown.faculty"
             class="card-footer text-center text-white bg-secondary"
-          >View details</a>
+          >{{isDetailsShown.faculty ? 'Hide' : 'Show'}} details</a>
         </div>
         <div class="card bg-dark text-white m-3 flex-grow-1">
           <h4 class="card-header bg-secondary text-center">Residents/PGI</h4>
           <div class="display-4 p-5 text-center">{{eTriageEmployees.resident.length}}</div>
+          <div class="table-responsive" style="max-height:70vh" v-if="isDetailsShown.resident">
+            <table class="table table-striped table-hover table-condensed table-dark m-0">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Name</th>
+                  <th>Position</th>
+                  <th>Department</th>
+                  <th>Symptoms and History</th>
+                  <th>Temperature</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-bind:key="key" v-for="(emp,key) in eTriageEmployees.resident">
+                  <td>{{emp.code}}</td>
+                  <td>{{emp.name}}</td>
+                  <td>{{emp.position}}</td>
+                  <td>{{emp.department}}</td>
+                  <td>{{emp.symotomsAndHistory != null ? emp.symotomsAndHistory.replace(/_/g,' ').toUpperCase().split(';').join(', ') : ''}}</td>
+                  <td>{{emp.temperature}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <a
             href="#"
-            v-on:click.prevent
+            v-on:click.prevent="isDetailsShown.resident = !isDetailsShown.resident"
             class="card-footer text-center text-white bg-secondary"
-          >View details</a>
+          >{{isDetailsShown.resident ? 'Hide' : 'Show'}} details</a>
         </div>
       </div>
 
@@ -232,6 +406,17 @@ export default {
         management: [],
         officer: [],
         resident: []
+      },
+      isDetailsShown: {
+        master: false,
+        forCovidEr: false,
+        male: false,
+        female: false,
+        faculty: false,
+        rankAndFile: false,
+        management: false,
+        officer: false,
+        resident: false
       },
       eTriageEmployeeCountDetailedToday: "",
       eTriageEmployeeCountToday: "",
