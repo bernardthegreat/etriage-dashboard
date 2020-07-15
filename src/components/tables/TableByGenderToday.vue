@@ -9,9 +9,10 @@
           <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li
               class="nav-item"
-              v-bind:key="index" v-for="(tab, index) in eTriageByGenderCountToday"
+              v-bind:key="index"
+              v-for="(tab, index) in eTriageByGenderCountToday"
               @click="currentTab = index"
-              :class="{active: currentTab === index}"
+              :class="{ active: currentTab === index }"
             >
               <a
                 class="nav-link"
@@ -47,21 +48,35 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-bind:key="key" v-for="(eTriageHistoricalResult, key) in eTriageByGenderCountToday[0]['details']">
-                      <td>{{eTriageHistoricalResult.code}}</td>
-                      <td>{{eTriageHistoricalResult.name}}</td>
-                      <td>{{eTriageHistoricalResult.age}}</td>
-                      <td>{{eTriageHistoricalResult.gender}}</td>
-                      <td>{{eTriageHistoricalResult.position}}</td>
-                      <td>{{eTriageHistoricalResult.department}}</td>
-                      <td>{{eTriageHistoricalResult.class}}</td>
-                      <td>{{eTriageHistoricalResult.temperature}}</td>
-                      <td v-html="eTriageHistoricalResult.symotomsAndHistory"></td>
+                    <tr
+                      v-bind:key="key"
+                      v-for="(eTriageHistoricalResult,
+                      key) in eTriageByGenderCountToday[0]['details']"
+                    >
+                      <td>{{ eTriageHistoricalResult.code }}</td>
+                      <td>{{ eTriageHistoricalResult.name }}</td>
+                      <td>{{ eTriageHistoricalResult.age }}</td>
+                      <td>{{ eTriageHistoricalResult.gender }}</td>
+                      <td>{{ eTriageHistoricalResult.position }}</td>
+                      <td>{{ eTriageHistoricalResult.department }}</td>
+                      <td>{{ eTriageHistoricalResult.class }}</td>
+                      <td>{{ eTriageHistoricalResult.temperature }}</td>
+                      <td
+                        v-html="eTriageHistoricalResult.symotomsAndHistory"
+                      ></td>
                       <td>
-                        <span v-if="eTriageHistoricalResult['isForCovidEr'] === 0">N/A</span>
-                        <span v-else-if="eTriageHistoricalResult['isForCovidEr'] === 1">For ER</span>
+                        <span
+                          v-if="eTriageHistoricalResult['isForCovidEr'] === 0"
+                          >N/A</span
+                        >
+                        <span
+                          v-else-if="
+                            eTriageHistoricalResult['isForCovidEr'] === 1
+                          "
+                          >For ER</span
+                        >
                       </td>
-                      <td>{{eTriageHistoricalResult.date}}</td>
+                      <td>{{ eTriageHistoricalResult.date }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -86,21 +101,35 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-bind:key="key" v-for="(eTriageHistoricalResult, key) in eTriageByGenderCountToday[1]['details']">
-                      <td>{{eTriageHistoricalResult.code}}</td>
-                      <td>{{eTriageHistoricalResult.name}}</td>
-                      <td>{{eTriageHistoricalResult.age}}</td>
-                      <td>{{eTriageHistoricalResult.gender}}</td>
-                      <td>{{eTriageHistoricalResult.position}}</td>
-                      <td>{{eTriageHistoricalResult.department}}</td>
-                      <td>{{eTriageHistoricalResult.class}}</td>
-                      <td>{{eTriageHistoricalResult.temperature}}</td>
-                      <td v-html="eTriageHistoricalResult.symotomsAndHistory"></td>
+                    <tr
+                      v-bind:key="key"
+                      v-for="(eTriageHistoricalResult,
+                      key) in eTriageByGenderCountToday[1]['details']"
+                    >
+                      <td>{{ eTriageHistoricalResult.code }}</td>
+                      <td>{{ eTriageHistoricalResult.name }}</td>
+                      <td>{{ eTriageHistoricalResult.age }}</td>
+                      <td>{{ eTriageHistoricalResult.gender }}</td>
+                      <td>{{ eTriageHistoricalResult.position }}</td>
+                      <td>{{ eTriageHistoricalResult.department }}</td>
+                      <td>{{ eTriageHistoricalResult.class }}</td>
+                      <td>{{ eTriageHistoricalResult.temperature }}</td>
+                      <td
+                        v-html="eTriageHistoricalResult.symotomsAndHistory"
+                      ></td>
                       <td>
-                        <span v-if="eTriageHistoricalResult['isForCovidEr'] === 0">N/A</span>
-                        <span v-else-if="eTriageHistoricalResult['isForCovidEr'] === 1">For ER</span>
+                        <span
+                          v-if="eTriageHistoricalResult['isForCovidEr'] === 0"
+                          >N/A</span
+                        >
+                        <span
+                          v-else-if="
+                            eTriageHistoricalResult['isForCovidEr'] === 1
+                          "
+                          >For ER</span
+                        >
                       </td>
-                      <td>{{eTriageHistoricalResult.date}}</td>
+                      <td>{{ eTriageHistoricalResult.date }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -125,20 +154,34 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-bind:key="key" v-for="(eTriageHistoricalResult, key) in eTriageByGenderCountToday[2]['details']">
-                      <td>{{eTriageHistoricalResult.date}}</td>
-                      <td>{{eTriageHistoricalResult.code}}</td>
-                      <td>{{eTriageHistoricalResult.name}}</td>
-                      <td>{{eTriageHistoricalResult.age}}</td>
-                      <td>{{eTriageHistoricalResult.gender}}</td>
-                      <td>{{eTriageHistoricalResult.position}}</td>
-                      <td>{{eTriageHistoricalResult.department}}</td>
-                      <td>{{eTriageHistoricalResult.class}}</td>
-                      <td>{{eTriageHistoricalResult.temperature}}</td>
-                      <td v-html="eTriageHistoricalResult.symotomsAndHistory"></td>
+                    <tr
+                      v-bind:key="key"
+                      v-for="(eTriageHistoricalResult,
+                      key) in eTriageByGenderCountToday[2]['details']"
+                    >
+                      <td>{{ eTriageHistoricalResult.date }}</td>
+                      <td>{{ eTriageHistoricalResult.code }}</td>
+                      <td>{{ eTriageHistoricalResult.name }}</td>
+                      <td>{{ eTriageHistoricalResult.age }}</td>
+                      <td>{{ eTriageHistoricalResult.gender }}</td>
+                      <td>{{ eTriageHistoricalResult.position }}</td>
+                      <td>{{ eTriageHistoricalResult.department }}</td>
+                      <td>{{ eTriageHistoricalResult.class }}</td>
+                      <td>{{ eTriageHistoricalResult.temperature }}</td>
+                      <td
+                        v-html="eTriageHistoricalResult.symotomsAndHistory"
+                      ></td>
                       <td>
-                        <span v-if="eTriageHistoricalResult['isForCovidEr'] === 0">N/A</span>
-                        <span v-else-if="eTriageHistoricalResult['isForCovidEr'] === 1">For ER</span>
+                        <span
+                          v-if="eTriageHistoricalResult['isForCovidEr'] === 0"
+                          >N/A</span
+                        >
+                        <span
+                          v-else-if="
+                            eTriageHistoricalResult['isForCovidEr'] === 1
+                          "
+                          >For ER</span
+                        >
                       </td>
                     </tr>
                   </tbody>
@@ -157,7 +200,7 @@ export default {
   props: ["apiKey", "apiUrl"],
   data() {
     return {
-      eTriageByGenderCountToday: '',
+      eTriageByGenderCountToday: "",
       currentTab: 0,
     };
   },
@@ -170,13 +213,13 @@ export default {
         `${this.apiUrl}etriage/dashboard-etriage-today?auth=${this.apiKey}`,
         {
           method: "GET",
-          headers: { "Content-Type": "application/json" }
+          headers: { "Content-Type": "application/json" },
         }
       );
       const responseJson = await response.json();
-      let male = responseJson.filter(item => item.gender == "M");
-      let female = responseJson.filter(item => item.gender == "F");
-      let none = responseJson.filter(item => item.gender == null);
+      let male = responseJson.filter((item) => item.gender == "M");
+      let female = responseJson.filter((item) => item.gender == "F");
+      let none = responseJson.filter((item) => item.gender == null);
       if (responseJson.length > 0) {
         this.showStatus = true;
       }
@@ -185,25 +228,24 @@ export default {
         {
           gender: "F",
           count: female.length,
-          details: female
+          details: female,
         },
         {
           gender: "M",
           count: male.length,
-          details: male
+          details: male,
         },
         {
           gender: "N/A",
           count: none.length,
-          details: none
-        }
+          details: none,
+        },
       ];
 
       this.eTriageByGenderCountToday = genderMap;
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
