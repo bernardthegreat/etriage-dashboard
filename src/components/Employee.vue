@@ -5,7 +5,7 @@
         <b class="fa fa-spinner fa-spin fa-5x"></b>
       </div>
       <div>
-        <p>FETCHING DATA ...</p>
+        <p class="lead m-3">Please wait while we fetch the results...</p>
       </div>
     </div>
     <div v-if="isDataLoaded">
@@ -17,7 +17,7 @@
           <h4>Employees Today {{ currentDate }}</h4>
         </div>
         <div class="card-body">
-          <h1 class="card-title pricing-card-title">{{ eTriageEmployeeCountToday }}</h1>
+          <h1 class="card-title pricing-card-title">{{ eTriageEmployees.master.length }}</h1>
         </div>
         <Detailed v-bind:persons="eTriageEmployees.master" v-if="isDetailsShown.master" />
         <a
@@ -264,12 +264,6 @@ export default {
         officer: false,
         resident: false
       },
-      eTriageEmployeeCountDetailedToday: "",
-      eTriageEmployeeCountToday: "",
-      eTriageByGenderDetailedToday: "",
-      eTriageByGenderCountToday: "",
-      eTriageByClassDetailedToday: "",
-      eTriageByClassCountToday: "",
       eTriageHistorical: "",
       eTriageHistoricalFilter: "",
       isFiltered: false,
@@ -279,10 +273,8 @@ export default {
       currentDate: new Date().toISOString().substring(0, 10)
     };
   },
-
   created() {
     this.eTriageCountToday();
-    // this.eTriageCountTodayByClass();
     this.eTriageHistoricalData();
   },
   methods: {
@@ -290,6 +282,9 @@ export default {
       this.currentPage = "/";
     },
     toggleDetails(toggle) {
+      if(this.eTriageEmployees[toggle].length == 0){
+        return;
+      }
       const status = this.isDetailsShown[toggle];
       this.isDetailsShown.master = false;
       this.isDetailsShown.forCovidEr = false;
@@ -326,7 +321,6 @@ export default {
       this.isFiltered = false;
       this.eTriageHistoricalFilter = this.eTriageHistorical;
     },
-
     async eTriageHistoricalData() {
       const response = await fetch(
         `${this.apiUrl}etriage/dashboard?auth=${this.apiKey}`,
@@ -387,33 +381,10 @@ export default {
         }
       );
       const responseJson = await response.json();
-      let male = responseJson.filter(item => item.gender == "M");
-      let female = responseJson.filter(item => item.gender == "F");
-      let none = responseJson.filter(item => item.gender == null);
       if (responseJson.length > 0) {
         this.showStatus = true;
       }
 
-      const genderMap = [
-        {
-          gender: "F",
-          count: female.length,
-          details: female
-        },
-        {
-          gender: "M",
-          count: male.length,
-          details: male
-        },
-        {
-          gender: "N/A",
-          count: none.length,
-          details: none
-        }
-      ];
-
-      this.eTriageByGenderCountToday = genderMap;
-      this.eTriageEmployeeCountToday = responseJson.length;
       this.eTriageEmployees.master = responseJson;
       this.eTriageEmployees.master.sort((a, b) => (a.name > b.name ? 1 : -1));
       this.eTriageEmployees.forCovidEr = this.eTriageEmployees.master.filter(
