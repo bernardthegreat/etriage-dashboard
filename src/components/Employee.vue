@@ -34,6 +34,36 @@
         </div>
       </div>
 
+      <div class="card my-5" v-if="eTriageEmployees.forCovidEr.length > 0">
+        <div class="card-header bg-danger text-white">
+          <h4 class="text-center my-0 font-weight-normal">For Covid ER Report: {{eTriageEmployees.forCovidEr.length}}</h4>
+        </div>
+        <div class="table-responsive" style="max-height:70vh">
+          <table class="table table-striped table-hover table-condensed table-dark">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Department</th>
+                <th>Symptoms and History</th>
+                <th>Temperature</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-bind:key="key" v-for="(emp,key) in eTriageEmployees.forCovidEr">
+                <td>{{emp.code}}</td>
+                <td>{{emp.name}}</td>
+                <td>{{emp.position}}</td>
+                <td>{{emp.department}}</td>
+                <td>{{emp.symotomsAndHistory != null ? emp.symotomsAndHistory.replace(/_/g,' ').toUpperCase().split(';').join(', ') : ''}}</td>
+                <td>{{emp.temperature}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       <div class="card-deck mb-12 text-center">
         <div
           class="card mb-4 shadow-sm"
@@ -195,6 +225,10 @@ export default {
 
   data() {
     return {
+      eTriageEmployees:{
+        master:[],
+        forCovidEr:[],
+      },
       eTriageEmployeeCountDetailedToday: "",
       eTriageEmployeeCountToday: "",
       eTriageByGenderDetailedToday: "",
@@ -332,6 +366,9 @@ export default {
 
       this.eTriageByGenderCountToday = genderMap;
       this.eTriageEmployeeCountToday = responseJson.length;
+      this.eTriageEmployees.master = responseJson;
+      this.eTriageEmployees.forCovidEr = responseJson.filter((result)=>result.isForCovidEr == 1);
+      this.eTriageEmployees.forCovidEr.sort((a, b) => (a.name > b.name) ? 1 : -1);
     },
     async eTriageCountTodayByClass() {
       this.isFormLoading = true;
