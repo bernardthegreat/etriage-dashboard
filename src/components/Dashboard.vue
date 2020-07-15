@@ -45,14 +45,14 @@ export default {
       apps: [
         {
           name: "Employees / Residents / Consultants",
-          route: "/employees",
+          route: "employees",
           icon: "fa fa-user",
           background: "bg-primary",
           count: "",
         },
         {
           name: "Visitors",
-          route: "/visitors",
+          route: "visitors",
           icon: "fa fa-users",
           background: "bg-danger",
           count: "",

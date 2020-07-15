@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <Header v-bind:route="route" />
-    <div v-if="route == '/etriage-dashboard/'">
-      <Dashboard v-bind:changeRoute="changeRoute" v-bind:apiKey="apiKey" v-bind:apiUrl="apiUrl" />
+    <Header v-bind:route="route" v-bind:changeRoute="changeRoute" v-bind:baseUrl="baseUrl" />
+    <div v-if="route == baseUrl">
+      <Dashboard v-bind:changeRoute="changeRoute" v-bind:apiKey="apiKey" v-bind:apiUrl="apiUrl" v-bind:baseUrl="baseUrl" />
     </div>
-    <div v-if="route == '/etriage-dashboard/employees'">
-      <Employee v-bind:changeRoute="changeRoute" v-bind:apiKey="apiKey" v-bind:apiUrl="apiUrl" />
+    <div v-if="route == baseUrl + 'employees'">
+      <Employee v-bind:changeRoute="changeRoute" v-bind:apiKey="apiKey" v-bind:apiUrl="apiUrl" v-bind:baseUrl="baseUrl" />
     </div>
-    <div v-if="route == '/etriage-dashboard/eTriageToday'">
-      <EtriageToday v-bind:changeRoute="changeRoute" v-bind:apiKey="apiKey" v-bind:apiUrl="apiUrl" />
+    <div v-if="route == baseUrl + 'eTriageToday'">
+      <EtriageToday v-bind:changeRoute="changeRoute" v-bind:apiKey="apiKey" v-bind:apiUrl="apiUrl" v-bind:baseUrl="baseUrl" />
     </div>
-    <div v-if="route == '/etriage-dashboard/eTriageByGenderToday'">
-      <ByGenderToday v-bind:changeRoute="changeRoute" v-bind:apiKey="apiKey" v-bind:apiUrl="apiUrl" />
+    <div v-if="route == baseUrl + 'eTriageByGenderToday'">
+      <ByGenderToday v-bind:changeRoute="changeRoute" v-bind:apiKey="apiKey" v-bind:apiUrl="apiUrl" v-bind:baseUrl="baseUrl" />
     </div>
   </div>
 </template>
@@ -30,6 +30,7 @@ export default {
       apiUrl: "https://apps.uerm.edu.ph:3443/",
       apiKey: "7190WHUt7gzKgrRURMnoS4D7tX6Xp112",
       route: window.location.pathname,
+      baseUrl: '/etriage-dashboard/',
     };
   },
   components: {
@@ -41,7 +42,7 @@ export default {
   },
   methods: {
     changeRoute(route) {
-      this.route = route;
+      this.route = this.baseUrl + route;
       window.location.pathname = this.route;
     },
   },

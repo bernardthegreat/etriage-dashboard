@@ -25,7 +25,7 @@
             </h1>
             <button
               type="button"
-              v-on:click.prevent="changeRoute('/eTriageToday')"
+              v-on:click.prevent="changeRoute('eTriageToday')"
               class="btn btn-lg btn-block btn-primary"
             >
               See Detailed Data
@@ -60,7 +60,7 @@
 
             <button
               type="button"
-              v-on:click.prevent="changeRoute('/eTriageByGenderToday')"
+              v-on:click.prevent="changeRoute('eTriageByGenderToday')"
               class="btn btn-lg btn-block btn-info"
             >
               See Detailed Data
