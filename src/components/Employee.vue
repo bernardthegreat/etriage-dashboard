@@ -19,11 +19,12 @@
         <div class="card-body">
           <h1 class="card-title pricing-card-title">{{ eTriageEmployeeCountToday }}</h1>
         </div>
+        <Detailed v-bind:persons="eTriageEmployees.master" v-if="isDetailsShown.master" />
         <a
           href="#"
-          v-on:click.prevent="changeRoute('eTriageToday')"
-          class="card-footer bg-primary text-white"
-        >View details</a>
+          v-on:click.prevent="toggleDetails('master')"
+          class="card-footer text-center text-white bg-primary"
+        >{{isDetailsShown.master ? 'Hide' : 'Show'}} details</a>
       </div>
 
       <div class="card my-5" v-if="eTriageEmployees.forCovidEr.length > 0">
@@ -65,66 +66,20 @@
         <div class="card bg-dark text-white m-3 flex-grow-1">
           <h4 class="card-header bg-secondary text-center">Male</h4>
           <div class="display-4 p-5 text-center">{{eTriageEmployees.male.length}}</div>
-          <div class="table-responsive" style="max-height:70vh" v-if="isDetailsShown.male">
-            <table class="table table-striped table-hover table-condensed table-dark m-0">
-              <thead>
-                <tr>
-                  <th>Code</th>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Department</th>
-                  <th>Symptoms and History</th>
-                  <th>Temperature</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-bind:key="key" v-for="(emp,key) in eTriageEmployees.male">
-                  <td>{{emp.code}}</td>
-                  <td>{{emp.name}}</td>
-                  <td>{{emp.position}}</td>
-                  <td>{{emp.department}}</td>
-                  <td>{{emp.symotomsAndHistory != null ? emp.symotomsAndHistory.replace(/_/g,' ').toUpperCase().split(';').join(', ') : ''}}</td>
-                  <td>{{emp.temperature}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <Detailed v-bind:persons="eTriageEmployees.male" v-if="isDetailsShown.male" />
           <a
             href="#"
-            v-on:click.prevent="isDetailsShown.male = !isDetailsShown.male"
+            v-on:click.prevent="toggleDetails('male')"
             class="card-footer text-center text-white bg-secondary"
           >{{isDetailsShown.male ? 'Hide' : 'Show'}} details</a>
         </div>
         <div class="card bg-dark text-white m-3 flex-grow-1">
           <h4 class="card-header bg-secondary text-center">Female</h4>
           <div class="display-4 p-5 text-center">{{eTriageEmployees.female.length}}</div>
-          <div class="table-responsive" style="max-height:70vh" v-if="isDetailsShown.female">
-            <table class="table table-striped table-hover table-condensed table-dark m-0">
-              <thead>
-                <tr>
-                  <th>Code</th>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Department</th>
-                  <th>Symptoms and History</th>
-                  <th>Temperature</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-bind:key="key" v-for="(emp,key) in eTriageEmployees.female">
-                  <td>{{emp.code}}</td>
-                  <td>{{emp.name}}</td>
-                  <td>{{emp.position}}</td>
-                  <td>{{emp.department}}</td>
-                  <td>{{emp.symotomsAndHistory != null ? emp.symotomsAndHistory.replace(/_/g,' ').toUpperCase().split(';').join(', ') : ''}}</td>
-                  <td>{{emp.temperature}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <Detailed v-bind:persons="eTriageEmployees.female" v-if="isDetailsShown.female" />
           <a
             href="#"
-            v-on:click.prevent="isDetailsShown.female = !isDetailsShown.female"
+            v-on:click.prevent="toggleDetails('female')"
             class="card-footer text-center text-white bg-secondary"
           >{{isDetailsShown.female ? 'Hide' : 'Show'}} details</a>
         </div>
@@ -137,165 +92,53 @@
         <div class="card bg-dark text-white m-3 flex-grow-1">
           <h4 class="card-header bg-secondary text-center">Officer</h4>
           <div class="display-4 p-5 text-center">{{eTriageEmployees.officer.length}}</div>
-          <div class="table-responsive" style="max-height:70vh" v-if="isDetailsShown.officer">
-            <table class="table table-striped table-hover table-condensed table-dark m-0">
-              <thead>
-                <tr>
-                  <th>Code</th>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Department</th>
-                  <th>Symptoms and History</th>
-                  <th>Temperature</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-bind:key="key" v-for="(emp,key) in eTriageEmployees.officer">
-                  <td>{{emp.code}}</td>
-                  <td>{{emp.name}}</td>
-                  <td>{{emp.position}}</td>
-                  <td>{{emp.department}}</td>
-                  <td>{{emp.symotomsAndHistory != null ? emp.symotomsAndHistory.replace(/_/g,' ').toUpperCase().split(';').join(', ') : ''}}</td>
-                  <td>{{emp.temperature}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <Detailed v-bind:persons="eTriageEmployees.officer" v-if="isDetailsShown.officer" />
           <a
             href="#"
-            v-on:click.prevent="isDetailsShown.officer = !isDetailsShown.officer"
+            v-on:click.prevent="toggleDetails('officer')"
             class="card-footer text-center text-white bg-secondary"
           >{{isDetailsShown.officer ? 'Hide' : 'Show'}} details</a>
         </div>
         <div class="card bg-dark text-white m-3 flex-grow-1">
           <h4 class="card-header bg-secondary text-center">Management</h4>
           <div class="display-4 p-5 text-center">{{eTriageEmployees.management.length}}</div>
-          <div class="table-responsive" style="max-height:70vh" v-if="isDetailsShown.management">
-            <table class="table table-striped table-hover table-condensed table-dark m-0">
-              <thead>
-                <tr>
-                  <th>Code</th>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Department</th>
-                  <th>Symptoms and History</th>
-                  <th>Temperature</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-bind:key="key" v-for="(emp,key) in eTriageEmployees.management">
-                  <td>{{emp.code}}</td>
-                  <td>{{emp.name}}</td>
-                  <td>{{emp.position}}</td>
-                  <td>{{emp.department}}</td>
-                  <td>{{emp.symotomsAndHistory != null ? emp.symotomsAndHistory.replace(/_/g,' ').toUpperCase().split(';').join(', ') : ''}}</td>
-                  <td>{{emp.temperature}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <Detailed v-bind:persons="eTriageEmployees.management" v-if="isDetailsShown.management" />
           <a
             href="#"
-            v-on:click.prevent="isDetailsShown.management = !isDetailsShown.management"
+            v-on:click.prevent="toggleDetails('management')"
             class="card-footer text-center text-white bg-secondary"
           >{{isDetailsShown.management ? 'Hide' : 'Show'}} details</a>
         </div>
         <div class="card bg-dark text-white m-3 flex-grow-1">
           <h4 class="card-header bg-secondary text-center">Rank and File</h4>
           <div class="display-4 p-5 text-center">{{eTriageEmployees.rankAndFile.length}}</div>
-          <div class="table-responsive" style="max-height:70vh" v-if="isDetailsShown.rankAndFile">
-            <table class="table table-striped table-hover table-condensed table-dark m-0">
-              <thead>
-                <tr>
-                  <th>Code</th>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Department</th>
-                  <th>Symptoms and History</th>
-                  <th>Temperature</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-bind:key="key" v-for="(emp,key) in eTriageEmployees.rankAndFile">
-                  <td>{{emp.code}}</td>
-                  <td>{{emp.name}}</td>
-                  <td>{{emp.position}}</td>
-                  <td>{{emp.department}}</td>
-                  <td>{{emp.symotomsAndHistory != null ? emp.symotomsAndHistory.replace(/_/g,' ').toUpperCase().split(';').join(', ') : ''}}</td>
-                  <td>{{emp.temperature}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <Detailed
+            v-bind:persons="eTriageEmployees.rankAndFile"
+            v-if="isDetailsShown.rankAndFile"
+          />
           <a
             href="#"
-            v-on:click.prevent="isDetailsShown.rankAndFile = !isDetailsShown.rankAndFile"
+            v-on:click.prevent="toggleDetails('rankAndFile')"
             class="card-footer text-center text-white bg-secondary"
           >{{isDetailsShown.rankAndFile ? 'Hide' : 'Show'}} details</a>
         </div>
         <div class="card bg-dark text-white m-3 flex-grow-1">
           <h4 class="card-header bg-secondary text-center">Faculty</h4>
           <div class="display-4 p-5 text-center">{{eTriageEmployees.faculty.length}}</div>
-          <div class="table-responsive" style="max-height:70vh" v-if="isDetailsShown.faculty">
-            <table class="table table-striped table-hover table-condensed table-dark m-0">
-              <thead>
-                <tr>
-                  <th>Code</th>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Department</th>
-                  <th>Symptoms and History</th>
-                  <th>Temperature</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-bind:key="key" v-for="(emp,key) in eTriageEmployees.faculty">
-                  <td>{{emp.code}}</td>
-                  <td>{{emp.name}}</td>
-                  <td>{{emp.position}}</td>
-                  <td>{{emp.department}}</td>
-                  <td>{{emp.symotomsAndHistory != null ? emp.symotomsAndHistory.replace(/_/g,' ').toUpperCase().split(';').join(', ') : ''}}</td>
-                  <td>{{emp.temperature}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <Detailed v-bind:persons="eTriageEmployees.faculty" v-if="isDetailsShown.faculty" />
           <a
             href="#"
-            v-on:click.prevent="isDetailsShown.faculty = !isDetailsShown.faculty"
+            v-on:click.prevent="toggleDetails('faculty')"
             class="card-footer text-center text-white bg-secondary"
           >{{isDetailsShown.faculty ? 'Hide' : 'Show'}} details</a>
         </div>
         <div class="card bg-dark text-white m-3 flex-grow-1">
           <h4 class="card-header bg-secondary text-center">Residents/PGI</h4>
           <div class="display-4 p-5 text-center">{{eTriageEmployees.resident.length}}</div>
-          <div class="table-responsive" style="max-height:70vh" v-if="isDetailsShown.resident">
-            <table class="table table-striped table-hover table-condensed table-dark m-0">
-              <thead>
-                <tr>
-                  <th>Code</th>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Department</th>
-                  <th>Symptoms and History</th>
-                  <th>Temperature</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-bind:key="key" v-for="(emp,key) in eTriageEmployees.resident">
-                  <td>{{emp.code}}</td>
-                  <td>{{emp.name}}</td>
-                  <td>{{emp.position}}</td>
-                  <td>{{emp.department}}</td>
-                  <td>{{emp.symotomsAndHistory != null ? emp.symotomsAndHistory.replace(/_/g,' ').toUpperCase().split(';').join(', ') : ''}}</td>
-                  <td>{{emp.temperature}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <Detailed v-bind:persons="eTriageEmployees.resident" v-if="isDetailsShown.resident" />
           <a
             href="#"
-            v-on:click.prevent="isDetailsShown.resident = !isDetailsShown.resident"
+            v-on:click.prevent="toggleDetails('resident')"
             class="card-footer text-center text-white bg-secondary"
           >{{isDetailsShown.resident ? 'Hide' : 'Show'}} details</a>
         </div>
@@ -391,9 +234,12 @@
 </template>
 
 <script>
+import Detailed from "../components/tables/Detailed";
 export default {
   props: ["apiKey", "apiUrl", "changeRoute"],
-
+  components: {
+    Detailed
+  },
   data() {
     return {
       eTriageEmployees: {
@@ -442,6 +288,19 @@ export default {
   methods: {
     initValues() {
       this.currentPage = "/";
+    },
+    toggleDetails(toggle) {
+      const status = this.isDetailsShown[toggle];
+      this.isDetailsShown.master = false;
+      this.isDetailsShown.forCovidEr = false;
+      this.isDetailsShown.male = false;
+      this.isDetailsShown.female = false;
+      this.isDetailsShown.faculty = false;
+      this.isDetailsShown.rankAndFile = false;
+      this.isDetailsShown.management = false;
+      this.isDetailsShown.officer = false;
+      this.isDetailsShown.resident = false;
+      this.isDetailsShown[toggle] = !status;
     },
     filterHistory(name) {
       if (this.isFiltered) {
