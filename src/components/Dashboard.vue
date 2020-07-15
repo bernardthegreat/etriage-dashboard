@@ -82,7 +82,7 @@ export default {
         this.showStatus = true;
       }
 
-      this.apps[1]["count"] = responseJson.length;
+      // this.apps[1]["count"] = responseJson.length;
     },
     async eTriageCountTodayVisitors() {
       const response = await fetch(

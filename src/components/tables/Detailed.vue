@@ -5,6 +5,7 @@
         <tr>
           <th>Code</th>
           <th>Name</th>
+          <th>Age</th>
           <th>Position</th>
           <th>Department</th>
           <th>Symptoms and History</th>
@@ -15,6 +16,7 @@
         <tr v-bind:key="key" v-for="(emp,key) in persons">
           <td>{{emp.code}}</td>
           <td>{{emp.name}}</td>
+          <td>{{emp.age}}</td>
           <td>{{emp.position}}</td>
           <td>{{emp.department}}</td>
           <td>{{emp.symotomsAndHistory != null ? emp.symotomsAndHistory.replace(/_/g,' ').toUpperCase().split(';').join(', ') : ''}}</td>
