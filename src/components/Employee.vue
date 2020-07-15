@@ -30,6 +30,7 @@
             >
               See Detailed Data
             </button>
+
           </div>
         </div>
       </div>
@@ -39,7 +40,7 @@
           <h4 class="text-center my-0 font-weight-normal">For Covid ER Report: {{eTriageEmployees.forCovidEr.length}}</h4>
         </div>
         <div class="table-responsive" style="max-height:70vh">
-          <table class="table table-striped table-hover table-condensed table-dark">
+          <table class="table table-striped table-hover table-condensed table-dark m-0">
             <thead>
               <tr>
                 <th>Code</th>
@@ -228,6 +229,13 @@ export default {
       eTriageEmployees:{
         master:[],
         forCovidEr:[],
+        male:[],
+        female:[],
+        faculty:[],
+        rankAndFile:[],
+        management:[],
+        officer:[],
+        resident:[],
       },
       eTriageEmployeeCountDetailedToday: "",
       eTriageEmployeeCountToday: "",
@@ -367,8 +375,15 @@ export default {
       this.eTriageByGenderCountToday = genderMap;
       this.eTriageEmployeeCountToday = responseJson.length;
       this.eTriageEmployees.master = responseJson;
-      this.eTriageEmployees.forCovidEr = responseJson.filter((result)=>result.isForCovidEr == 1);
-      this.eTriageEmployees.forCovidEr.sort((a, b) => (a.name > b.name) ? 1 : -1);
+      this.eTriageEmployees.master.sort((a, b) => (a.name > b.name) ? 1 : -1);
+      this.eTriageEmployees.forCovidEr = this.eTriageEmployees.master.filter((result)=>result.isForCovidEr == 1);
+      this.eTriageEmployees.male = this.eTriageEmployees.master.filter((result)=>result.gender == 'M');
+      this.eTriageEmployees.female = this.eTriageEmployees.master.filter((result)=>result.gender == 'F');
+      this.eTriageEmployees.management = this.eTriageEmployees.master.filter((result)=>result.class == 'MANAGEMENT');
+      this.eTriageEmployees.rankAndFile = this.eTriageEmployees.master.filter((result)=>result.class == 'RANK AND FILE');
+      this.eTriageEmployees.officer = this.eTriageEmployees.master.filter((result)=>result.class == 'OFFICER');
+      this.eTriageEmployees.resident = this.eTriageEmployees.master.filter((result)=>result.class == 'RESIDENT/PGI');
+      this.eTriageEmployees.faculty = this.eTriageEmployees.master.filter((result)=>result.class == 'FACULTY');
     },
     async eTriageCountTodayByClass() {
       this.isFormLoading = true;
