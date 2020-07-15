@@ -50,13 +50,13 @@ export default {
           background: "bg-primary",
           count: "",
         },
-        {
-          name: "Visitors",
-          route: "visitors",
-          icon: "fa fa-users",
-          background: "bg-danger",
-          count: "",
-        },
+        // {
+        //   name: "Visitors",
+        //   route: "visitors",
+        //   icon: "fa fa-users",
+        //   background: "bg-danger",
+        //   count: "",
+        // },
       ],
       isDataLoaded: false,
     };
