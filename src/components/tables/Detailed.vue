@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-bind:key="key" v-for="(emp,key) in persons">
+        <tr v-bind:class="{'bg-danger':checkIfCovidEr(emp)}" v-bind:key="key" v-for="(emp,key) in persons">
           <td>{{emp.code}}</td>
           <td>{{emp.name}}</td>
           <td>{{emp.age}}</td>
@@ -29,7 +29,16 @@
 
 <script>
 export default {
-  props: ["persons"]
+  props: ["persons"],
+  methods:{
+    checkIfCovidEr(employee){
+      if(employee.isForCovidEr == 1){
+        return true;
+      }
+
+      return false;
+    },
+  }
 };
 </script>
 

@@ -12,7 +12,7 @@
       <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <h1 class="display-4">ETriage Employee Dashboard</h1>
       </div>
-      <div class="card bg-dark text-white text-center">
+      <div class="card bg-dark text-white text-center my-3">
         <div class="card-header bg-primary text-white">
           <h4>Employees Today {{ currentDate }}</h4>
         </div>
@@ -27,13 +27,19 @@
         >{{isDetailsShown.master ? 'Hide' : 'Show'}} details</a>
       </div>
 
-      <div class="card my-5" v-if="eTriageEmployees.forCovidEr.length > 0">
+      <div class="card bg-dark text-white text-center my-3">
         <div class="card-header bg-danger text-white">
-          <h4
-            class="text-center my-0 font-weight-normal"
-          >For Covid ER Report: {{eTriageEmployees.forCovidEr.length}}</h4>
+          <h4>For Covid ER Report: {{eTriageEmployees.forCovidEr.length}}</h4>
         </div>
-        <Detailed v-bind:persons="eTriageEmployees.forCovidEr" />
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">{{ eTriageEmployees.forCovidEr.length }}</h1>
+        </div>
+        <Detailed v-bind:persons="eTriageEmployees.forCovidEr" v-if="isDetailsShown.forCovidEr" />
+        <a
+          href="#"
+          v-on:click.prevent="toggleDetails('forCovidEr')"
+          class="card-footer text-center text-white bg-danger"
+        >{{isDetailsShown.forCovidEr ? 'Hide' : 'Show'}} details</a>
       </div>
 
       <div
@@ -57,6 +63,32 @@
           <a
             href="#"
             v-on:click.prevent="toggleDetails('female')"
+            class="card-footer text-center text-white bg-secondary"
+          >{{isDetailsShown.female ? 'Hide' : 'Show'}} details</a>
+        </div>
+      </div>
+
+      <div
+        class="d-flex flex-wrap justify-content-around"
+        style="margin-left:-16px; margin-right:-16px;"
+      >
+        <div class="card bg-dark text-white m-3 flex-grow-1">
+          <h4 class="card-header bg-secondary text-center">Age Group 59 Below</h4>
+          <div class="display-4 p-5 text-center">{{eTriageEmployees.age59Below.length}}</div>
+          <Detailed v-bind:persons="eTriageEmployees.age59Below" v-if="isDetailsShown.age59Below" />
+          <a
+            href="#"
+            v-on:click.prevent="toggleDetails('age59Below')"
+            class="card-footer text-center text-white bg-secondary"
+          >{{isDetailsShown.male ? 'Hide' : 'Show'}} details</a>
+        </div>
+        <div class="card bg-dark text-white m-3 flex-grow-1">
+          <h4 class="card-header bg-secondary text-center">Age Group 60 Above</h4>
+          <div class="display-4 p-5 text-center">{{eTriageEmployees.age60Above.length}}</div>
+          <Detailed v-bind:persons="eTriageEmployees.age60Above" v-if="isDetailsShown.age60Above" />
+          <a
+            href="#"
+            v-on:click.prevent="toggleDetails('age60Above')"
             class="card-footer text-center text-white bg-secondary"
           >{{isDetailsShown.female ? 'Hide' : 'Show'}} details</a>
         </div>
@@ -228,7 +260,9 @@ export default {
         rankAndFile: [],
         management: [],
         officer: [],
-        resident: []
+        resident: [],
+        age59Below: [],
+        age60Above: []
       },
       isDetailsShown: {
         master: false,
@@ -239,7 +273,9 @@ export default {
         rankAndFile: false,
         management: false,
         officer: false,
-        resident: false
+        resident: false,
+        age59Below: false,
+        age60Above: false
       },
       eTriageHistorical: "",
       eTriageHistoricalFilter: "",
@@ -272,6 +308,8 @@ export default {
       this.isDetailsShown.management = false;
       this.isDetailsShown.officer = false;
       this.isDetailsShown.resident = false;
+      this.isDetailsShown.age59Below = false;
+      this.isDetailsShown.age60Above = false;
       this.isDetailsShown[toggle] = !status;
     },
     filterHistory(name) {
@@ -387,6 +425,12 @@ export default {
       );
       this.eTriageEmployees.faculty = this.eTriageEmployees.master.filter(
         result => result.class == "FACULTY"
+      );
+      this.eTriageEmployees.age60Above = this.eTriageEmployees.master.filter(
+        result => result.age >= 60
+      );
+      this.eTriageEmployees.age59Below = this.eTriageEmployees.master.filter(
+        result => result.age < 60
       );
     }
   }
