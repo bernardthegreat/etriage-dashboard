@@ -10,7 +10,7 @@
         <a href="#" class="navbar-brand d-flex align-items-center">
           <strong>UERM ETriage Dashboard</strong>
         </a>
-        <div v-if="route != baseUrl && route != '/etriage-dashboard/infirmary' && isLoggedIn">
+        <div v-if="route != baseUrl && route != '/etriage-dashboard/infirmary' && isViewInfirmary">
           <a href="#" v-on:click.prevent="changeRoute('infirmary')" class="btn btn-outline-light">
             <i class="fa fa-sign-in"></i>
           </a>
@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  props: ["route", "changeRoute", "baseUrl", "isLoggedIn"],
+  props: ["route", "changeRoute", "baseUrl", "isViewInfirmary"],
   methods: {}
 };
 </script>
