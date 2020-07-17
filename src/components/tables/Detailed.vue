@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label class="w-100 text-left mb-2">
+    <label class="w-100 text-left mb-2 p-3">
       <b>Search</b>
       <input
         type="search"
