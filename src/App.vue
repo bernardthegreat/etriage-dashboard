@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <Header v-bind:route="route" v-bind:changeRoute="changeRoute" v-bind:baseUrl="baseUrl" />
+    <Header
+      v-bind:route="route"
+      v-bind:changeRoute="changeRoute"
+      v-bind:baseUrl="baseUrl"
+      v-bind:isLoggedIn="isLoggedIn"
+    />
     <div v-if="route == baseUrl">
       <Dashboard
         v-bind:changeRoute="changeRoute"
@@ -42,7 +47,8 @@ export default {
       // apiUrl: "http://10.107.0.10:3000/",
       apiKey: "7190WHUt7gzKgrRURMnoS4D7tX6Xp112",
       route: "/etriage-dashboard/",
-      baseUrl: "/etriage-dashboard/"
+      baseUrl: "/etriage-dashboard/",
+      isLoggedIn: false
     };
   },
   components: {
