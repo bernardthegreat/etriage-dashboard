@@ -10,6 +10,7 @@
           <th>Department</th>
           <th>Symptoms and History</th>
           <th>Temperature</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -21,6 +22,11 @@
           <td>{{emp.department}}</td>
           <td>{{emp.symotomsAndHistory != null ? emp.symotomsAndHistory.replace(/_/g,' ').toUpperCase().split(';').join(', ') : ''}}</td>
           <td>{{emp.temperature}}</td>
+          <td> 
+            <button class="btn btn-success" v-if="checkIfCovidEr(emp)" v-on:click="clearEmployee(emp.code)">
+              <i class="fa fa-check"> </i>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -35,9 +41,11 @@ export default {
       if(employee.isForCovidEr == 1){
         return true;
       }
-
       return false;
     },
+    clearEmployee(code){
+      console.log(code);
+    }
   }
 };
 </script>

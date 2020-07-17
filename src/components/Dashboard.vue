@@ -71,7 +71,7 @@ export default {
       this.isDataLoaded = true;
 
       const response = await fetch(
-        `${this.apiUrl}etriage/dashboard-etriage-today?auth=${this.apiKey}`,
+        `${this.apiUrl}etriage/dashboard?auth=${this.apiKey}&isToday=1`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
@@ -86,7 +86,7 @@ export default {
     },
     async eTriageCountTodayVisitors() {
       const response = await fetch(
-        `${this.apiUrl}etriage/dashboard-etriage-today?auth=${this.apiKey}`,
+        `${this.apiUrl}etriage/dashboard?auth=${this.apiKey}&isToday=1`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },

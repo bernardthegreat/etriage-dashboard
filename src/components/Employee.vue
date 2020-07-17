@@ -224,8 +224,12 @@
                     <td>{{ eTriageHistoricalResult.age }}</td>
                     <td>{{ eTriageHistoricalResult.gender }}</td>
                     <td>{{ eTriageHistoricalResult.position }}</td>
-                    <td>{{ eTriageHistoricalResult.department }}</td>
-                    <td>{{ eTriageHistoricalResult.class }}</td>
+                    <td class="department" v-on:click="filterHistoryByDepartment(eTriageHistoricalResult.department)">
+                      {{ eTriageHistoricalResult.department }}</td>
+                    <td class="class"
+                      v-on:click="filterHistoryByClass(eTriageHistoricalResult.class)">
+                      {{ eTriageHistoricalResult.class }}
+                    </td>
                     <td>{{ eTriageHistoricalResult.temperature }}</td>
                     <td v-html="eTriageHistoricalResult.symotomsAndHistory"></td>
                   </tr>
@@ -323,6 +327,28 @@ export default {
       );
       this.isFiltered = true;
     },
+    filterHistoryByClass(employeeClass) {
+      if (this.isFiltered) {
+        this.isFiltered = false;
+        this.eTriageHistoricalFilter = this.eTriageHistorical;
+        return;
+      }
+      this.eTriageHistoricalFilter = this.eTriageHistoricalFilter.filter(
+        item => item.class == employeeClass
+      );
+      this.isFiltered = true;
+    },
+    filterHistoryByDepartment(department) {
+      if (this.isFiltered) {
+        this.isFiltered = false;
+        this.eTriageHistoricalFilter = this.eTriageHistorical;
+        return;
+      }
+      this.eTriageHistoricalFilter = this.eTriageHistoricalFilter.filter(
+        item => item.department == department
+      );
+      this.isFiltered = true;
+    },
     copytable(element) {
       var urlField = document.getElementById(element);
       var selection = window.getSelection();
@@ -389,7 +415,7 @@ export default {
     },
     async eTriageCountToday() {
       const response = await fetch(
-        `${this.apiUrl}etriage/dashboard-etriage-today?auth=${this.apiKey}`,
+        `${this.apiUrl}etriage/dashboard?auth=${this.apiKey}&isToday=1`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" }
@@ -399,7 +425,6 @@ export default {
       if (responseJson.length > 0) {
         this.showStatus = true;
       }
-
       this.eTriageEmployees.master = responseJson;
       this.eTriageEmployees.master.sort((a, b) => (a.name > b.name ? 1 : -1));
       this.eTriageEmployees.forCovidEr = this.eTriageEmployees.master.filter(
