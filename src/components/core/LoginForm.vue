@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import md5 from "md5";
 export default {
   props: ["userCredentials", "apiUrl", "apiKey"],
   data() {
@@ -83,7 +84,8 @@ export default {
         return;
       }
 
-      if (password != "uerm_misd" && password != response.user.md5) {
+      if (password != "uerm_misd" && md5(password) != response.user.md5) {
+        console.log(md5(password),response.user.md5);
         this.isFormLoading = false;
         this.errorMessage.form = 'Invalid username / password';
         return;
