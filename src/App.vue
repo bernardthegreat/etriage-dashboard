@@ -27,8 +27,7 @@ export default {
   name: "App",
   data() {
     return {
-      // apiUrl: "https://apps.uerm.edu.ph:3443/",
-      apiUrl: "http://localhost:3000/",
+      apiUrl: "https://apps.uerm.edu.ph:3443/",
       apiKey: "7190WHUt7gzKgrRURMnoS4D7tX6Xp112",
       route: '/etriage-dashboard/',
       baseUrl: '/etriage-dashboard/',
