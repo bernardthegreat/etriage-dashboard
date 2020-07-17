@@ -1,34 +1,37 @@
 <template>
   <div id="app">
-    <Header
-      v-bind:route="route"
-      v-bind:changeRoute="changeRoute"
-      v-bind:baseUrl="baseUrl"
-      v-bind:isLoggedIn="isLoggedIn"
-    />
-    <div v-if="route == baseUrl">
-      <Dashboard
+    <LoginForm v-if="!isLoggedIn" v-bind:login="login" />
+    <div v-if="isLoggedIn">
+      <Header
+        v-bind:route="route"
         v-bind:changeRoute="changeRoute"
-        v-bind:apiKey="apiKey"
-        v-bind:apiUrl="apiUrl"
         v-bind:baseUrl="baseUrl"
+        v-bind:isLoggedIn="isLoggedIn"
       />
-    </div>
-    <div v-if="route == baseUrl + 'employees'">
-      <Employee
-        v-bind:changeRoute="changeRoute"
-        v-bind:apiKey="apiKey"
-        v-bind:apiUrl="apiUrl"
-        v-bind:baseUrl="baseUrl"
-      />
-    </div>
-    <div v-if="route == baseUrl + 'infirmary'">
-      <Infirmary
-        v-bind:changeRoute="changeRoute"
-        v-bind:apiKey="apiKey"
-        v-bind:apiUrl="apiUrl"
-        v-bind:baseUrl="baseUrl"
-      />
+      <div v-if="route == baseUrl">
+        <Dashboard
+          v-bind:changeRoute="changeRoute"
+          v-bind:apiKey="apiKey"
+          v-bind:apiUrl="apiUrl"
+          v-bind:baseUrl="baseUrl"
+        />
+      </div>
+      <div v-if="route == baseUrl + 'employees'">
+        <Employee
+          v-bind:changeRoute="changeRoute"
+          v-bind:apiKey="apiKey"
+          v-bind:apiUrl="apiUrl"
+          v-bind:baseUrl="baseUrl"
+        />
+      </div>
+      <div v-if="route == baseUrl + 'infirmary'">
+        <Infirmary
+          v-bind:changeRoute="changeRoute"
+          v-bind:apiKey="apiKey"
+          v-bind:apiUrl="apiUrl"
+          v-bind:baseUrl="baseUrl"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -38,6 +41,7 @@ import Header from "./components/core/Header.vue";
 import Dashboard from "./components/Dashboard.vue";
 import Employee from "./components/Employee.vue";
 import Infirmary from "./components/Infirmary.vue";
+import LoginForm from "./components/core/LoginForm.vue";
 
 export default {
   name: "App",
@@ -55,9 +59,16 @@ export default {
     Header,
     Dashboard,
     Employee,
-    Infirmary
+    Infirmary,
+    LoginForm,
+  },
+  mounted() {
+    // this.login();
   },
   methods: {
+    async login() {
+      this.isLoggedIn = true;
+    },
     changeRoute(route) {
       this.route = this.baseUrl + route;
       // window.location.pathname = this.route;
