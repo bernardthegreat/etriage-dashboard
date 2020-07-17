@@ -430,6 +430,7 @@ export default {
       this.eTriageEmployees.forCovidEr = this.eTriageEmployees.master.filter(
         result => result.isForCovidEr == 1
       );
+      
       this.eTriageEmployees.male = this.eTriageEmployees.master.filter(
         result => result.gender == "M"
       );
