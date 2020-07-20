@@ -19,6 +19,7 @@
             <th>Age</th>
             <th>Position</th>
             <th>Department</th>
+            <th>Mobile No</th>
             <th>Symptoms and History</th>
             <th>Temperature</th>
             <th v-if="showClearButton == true"></th>
@@ -35,6 +36,7 @@
             <td>{{emp.age}}</td>
             <td>{{emp.position}}</td>
             <td>{{emp.department}}</td>
+            <td>{{emp.mobileNo}}</td>
             <td class="text-left" style="white-space:nowrap;">{{emp.symotomsAndHistory != null ? emp.symotomsAndHistory.replace(/_/g,' ').toUpperCase().split(';').join(', ') : ''}}</td>
             <td>{{emp.temperature}}</td>
             <td v-if="showClearButton == true">
@@ -59,7 +61,10 @@ export default {
   data() {
     return {
       search: "",
-      personsFiltered: []
+      personsFiltered: [],
+      userData:{
+        username:localStorage.username,
+      }
     };
   },
   methods: {
