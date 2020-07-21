@@ -37,7 +37,7 @@
             <td>{{emp.position}}</td>
             <td>{{emp.department}}</td>
             <td>{{emp.mobileNo}}</td>
-            <td class="text-left" style="white-space:nowrap;">{{emp.symotomsAndHistory != null ? emp.symotomsAndHistory.replace(/_/g,' ').toUpperCase().split(';').join(', ') : ''}}</td>
+            <td class="text-left" style="white-space:nowrap;">{{emp.symptomsAndHistory != null ? emp.symptomsAndHistory.replace(/_/g,' ').toUpperCase().split(';').join(', ') : ''}}</td>
             <td>{{emp.temperature}}</td>
             <td v-if="showClearButton == true">
               <button
